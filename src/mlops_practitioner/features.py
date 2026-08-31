@@ -1,13 +1,7 @@
-import os
 import pandas as pd
 
-from sklearn.model_selection import train_test_split
 
-
-from mlops_practitioner.config import parquet_path
-
-
-def add_features(df):
+def add_features(df: pd.DataFrame) -> tuple[pd.DataFrame, list[str]]:
 
     # Calculate duration in minutes
     df['duration'] = (df['lpep_dropoff_datetime'] - df['lpep_pickup_datetime']).dt.total_seconds() / 60.0

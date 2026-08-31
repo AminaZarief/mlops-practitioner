@@ -1,13 +1,18 @@
-from mlops_practitioner.config import model_path
+import pickle
 
+import numpy as np
+import pandas as pd
 from sklearn.feature_extraction import DictVectorizer
 from sklearn.linear_model import LinearRegression
 
-import pickle
+from mlops_practitioner.config import model_path
 
 
-
-def train(train_df, val_df, features):
+def train(
+        train_df: pd.DataFrame,
+          val_df:pd.DataFrame,
+            features:list[str]
+            ) -> tuple[np.ndarray, np.ndarray]:
 
     train_dicts = train_df[features].to_dict(orient='records')
     val_dicts = val_df[features].to_dict(orient='records')

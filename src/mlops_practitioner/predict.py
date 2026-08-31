@@ -1,8 +1,11 @@
-from sklearn.feature_extraction import DictVectorizer
-from sklearn.linear_model import LinearRegression
-from mlops_practitioner.config import model_path
 import pickle
-def predict(input_data):
+
+import numpy as np
+
+from mlops_practitioner.config import model_path
+
+
+def predict(input_data:list[dict]) -> np.ndarray:
     with open(model_path,'rb') as f:
         model, dv = pickle.load(f)
 
